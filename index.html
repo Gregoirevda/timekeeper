@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="Authentification">
+  <head>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <meta name="viewport" content="initial-scale=1" />
+    <meta charset="UTF-8">
+
+    <!-- CSS file-->
+    <link rel="stylesheet" href="css/authentification.css">
+  </head>
+  <body layout="column">
+    
+
+    <style>
+      .test{
+        border: 1px solid black;
+      }
+    </style>
+
+
+    <md-toolbar >
+      <span flex></span>
+      <div class="md-toolbar-tools">
+        <h1> Decis Tim Keeper</h1>
+      </div>
+   </md-toolbar>
+
+   <!-- Body container -->
+    <!-- Margin top -->
+    <div flex="10">
+    </div>
+
+    <!-- Element -->
+    <div layout="row">
+      <!-- offset -->
+      <div flex-sm="10" flex-md="15" flex="25">
+      </div>
+      <!-- Raised element -->
+      <div layout="column" flex-sm="80" flex-md="70" flex="50" class="md-whiteframe-z2" id="padding-bottom-form">
+        <div id="form-title">
+          Se connecter
+        </div>
+        <form name="loginform" layout-padding ng-controller="LoginController as loginCtrl" 
+                                          ng-submit="loginform.$valid && loginCtrl.submit()" novalidate>
+          <div layout="row">
+            <div layout="row" flex="20">
+               <md-icon md-svg-src="image/ic_person_48px.svg" class="icon-grey"> </md-icon>
+            </div>
+            <md-input-container flex="70">
+              <label for="email"> Email </label>
+              <input type="email" name="email" ng-model="loginCtrl.email" required>
+            </md-input-container>
+          </div> <!-- Email row -->
+
+          <div layout="row">
+            <div layout="row" flex="20">
+              <md-icon md-svg-src="image/ic_vpn_key_48px.svg" class="icon-grey"> </md-icon>
+            </div>
+            <md-input-container flex="70">
+              <label> Mot de passe </label>
+              <input type="password" name="password" ng-model="loginCtrl.password" required>
+            </md-input-container>
+          </div> <!-- Password row -->
+         
+          <div layout="row">
+            <div layout="row" layout-align="end" flex="90">
+              <md-button class="md-raised md-primary"> Login </md-button>
+            </div>
+          </div> <!--Button row -->
+        </form>
+      </div> <!-- Raised element -->
+   </div> 
+
+
+
+    <!-- Angular Material Dependencies -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
+
+    <!-- JS script -->
+    <script src="js/authentification.js"> </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+body{
+	font-familly: RobotoDraft;
+}
+
+#form-title{
+	background-color: RGB(240,240,240);
+	border-bottom: 1px solid RGB(220, 220, 220);
+	padding: 20px 0px 20px 20px;
+	text-align: center;
+}
+
+#padding-bottom-form{
+	padding-bottom: 30px;
+}
+
+.icon-grey{
+	color: grey;
+	height: 30px;
+	width: 25px;
+}
+
+.md-primary{
+	padding: 10px 25px 10px 25px;
+}
+

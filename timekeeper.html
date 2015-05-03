@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="timekeeper">
+  <head>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <meta name="viewport" content="initial-scale=1" />
+    <meta charset="UTF-8">
+
+    <!-- Css stylesheet-->
+    <link rel="stylesheet" href="css/timekeeper.css">
+  </head>
+  <body layout="column" ng-controller="CalenderController as calenderCtrl">
+
+    <style>
+      .test{
+        border: 1px solid black;
+      }
+    </style>
+
+    <md-toolbar> 
+      <div class="md-toolbar-tools"> 
+        <span> Time keeper </span>
+        <span flex="20"></span>
+        <span> Grégoire Van der Auweulen</span>
+      </div>
+    </md-toolbar>
+    
+    <!-- Margin top -->
+    <div flex="10"></div>
+      
+
+    <!-- Container -->
+    <div layout="row" layout-align="space-around" class="">
+      <!-- 
+
+          Calender 
+
+      -->
+
+
+      <div class="md-whiteframe-z1 calender">
+        <!-- Goodlooking -->
+        <div layout="column" class="gcontainer">
+          <div class="gday"  layout-padding> 
+              <div class="transform" id="gday">
+                  <div class="transform-element" ng-repeat="day in calenderCtrl.days"> {{day}} </div>
+              </div>
+          </div>
+          <div class="gcontainerTwo">
+            <!-- Set height, font-->
+            <div class="gmonth"> 
+                <div class="transform" id="gmonth">
+                    <div class="transform-element" ng-repeat="month in calenderCtrl.monthXs track by $index"> {{month}} </div>
+                </div>
+            </div>
+            <div class="gdate"> 
+                <div class="transform" id="gdate">
+                    <div class="transform-element-date" ng-repeat="_ in calenderCtrl.getNumberOfDays() track by $index"> {{$index + 1}}  </div>
+                </div>
+            </div>
+            <div class="gyear"> 
+              <div class="transform" id="gyear">
+                  <div class="transform-element" ng-repeat="year in calenderCtrl.years"> {{year}} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Month -->
+        <div layout="row" layout-align="space-between center" class="month">
+          <md-button ng-click="calenderCtrl.previousMonth()"> < </md-button>
+          <div>{{calenderCtrl.getMonth() + " " + calenderCtrl.year}}</div>
+          <md-button ng-click="calenderCtrl.nextMonth()"> > </md-button>
+        </div>
+
+        <div layout="row" layout-align="space-around" layout-padding>
+          <div ng-repeat="day in calenderCtrl.daysXxs track by $index" class="day">
+            {{day}}
+          </div>
+        </div>
+
+        <div class="date-container">
+          <!-- Empty days -->
+          <div ng-repeat="emptyday in calenderCtrl.getEmptyDays() track by $index" class="empty-date">
+            
+          </div>
+
+          <!-- Days -->
+          <div ng-repeat="date in calenderCtrl.getNumberOfDays() track by $index" class="date" 
+                ng-class="{actualday : calenderCtrl.isActualDay($index + 1) , selectedday : calenderCtrl.isSelected($index + 1)}" 
+                ng-click="calenderCtrl.selectDay($index + 1)">
+            {{$index+1}}
+          </div>
+        </div>
+        
+      </div> <!-- Calender -->
+
+      <!-- 
+
+
+          Display tasks
+
+      -->
+
+      <md-content layout="column" class="task-container overflow-visible" flex="50">
+          <!-- header: displays selected date -->
+          <div class="task-date" layout="row" layout-align="center center">
+              {{ 
+                calenderCtrl.selectedDay + " " + calenderCtrl.selectedDate + " " + 
+                calenderCtrl.selectedMonthLong + " " + calenderCtrl.selectedYear
+              }}
+          </div>
+          
+          <!-- Hour and tasks container -->
+          <div layout="column" ng-repeat="_ in calenderCtrl.getHours() track by $index">
+            
+          
+                <!-- Hour -->
+              <div class="task-hours" layout="row">
+                  <div flex="10"> {{$index + 1 + ":00"}}</div>
+              </div> <!-- hour -->
+
+              <div ng-show="taskCtrl.isTask($index+1, calenderCtrl.getSelectedDateForTask())" ng-controller="TaskController as taskCtrl" class="task-container-position-absolute md-whiteframe-z2" id="{{$index+1}}">
+                  <div>
+                    {{taskCtrl.getTask()}}
+                  </div>
+                  <div>
+                    {{taskCtrl.getComment()}}
+                  </div>
+                  <!-- slide bar-->
+                  <div class="slidebar"  id="testt">
+                  </div>
+              </div> <!-- ng show task -->
+
+          </div> <!-- Hour and task container-->
+          
+
+
+      </md-content> <!-- display  tasks -->
+    </div> <!-- Container -->
+
+
+<script>
+
+function initializeSlider(){
+
+  var difference, selectedElement;
+  var posY = null;
+  var handler;
+
+  var element = document.getElementsByClassName("slidebar");
+  for(var i = 0; i < element.length; i++){
+    element[i].addEventListener("mousedown", click);
+  }
+
+  function click(){
+    console.log("click");
+    posY = event.y;
+    selectedElement = this.parentElement;
+    selectedElement.style.height = "20px";
+    handler = function(){ move(selectedElement) };
+    document.addEventListener("mousemove", handler);
+    document.addEventListener("mouseup", up );
+  }
+
+  function move(e){
+    difference = event.y - posY;
+    selectedElement.style.height =  20 + difference + "px";
+    console.log("move");
+  }
+
+  function up(){
+    console.log("quit");
+    document.removeEventListener("mousemove", handler);
+    document.removeEventListener("mouseup", up);
+  }
+
+}
+  
+
+  window.onload = initializeSlider;
+
+</script>
+
+
+
+
+    <!-- Angular Material Dependencies -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
+
+    <!-- JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!--
+    <script>
+    $(document).ready(function(){
+$("#testt").on('click', testt);
+
+    function testt(){
+      console.log("Hello");
+    }
+
+    });
+
+
+    </script>
+      -->
+
+    <!-- JS script -->
+    <script src="js/timekeeper.js"></script>
+  </body>
+</html>

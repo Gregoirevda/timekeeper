@@ -1,0 +1,155 @@
+.calender{
+	width: 300px;
+	max-height: 510px;
+	font-family: "RobotoDraft";
+}
+
+.gcontainer{
+	text-align: center;
+	color: white;
+}
+
+.gday{
+	background-color: RGB(11, 121, 107);
+	overflow: hidden;
+	position: relative;
+	height: 30px;
+}
+
+.gcontainerTwo{
+	background-color: RGB(17,150,136);
+}
+.gmonth{
+	margin-top: 10px;
+	font-size: 23px;
+	height: 30px;
+	overflow: hidden;
+	position: relative;
+}
+.gdate{
+	font-size: 58px;
+	height: 70px;
+	overflow: hidden;
+	position: relative;
+}
+.gyear{
+	margin-bottom: 10px;
+	font-size: 22px;
+	opacity: 0.6;
+	height: 30px;
+	overflow: hidden;
+	position: relative;
+}
+
+.transform{
+	position: relative;
+}
+.transform-element{
+	height: 30px;
+}
+.transform-element-date{
+	height: 70px;
+}
+
+.month{
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 25px 10px 25px;
+}
+
+.day{
+	color: grey;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.date-container{
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.empty-date{
+	display: inline-block;
+	width: 29px;
+	margin: 5px;
+}
+.date{
+	border-radius: 30px;
+	font-size: 13px;
+	display: inline-block;
+	padding: 8px;
+	width: 29px;
+	margin: 5px;
+	text-align: center;
+}
+.date:hover{
+	cursor: pointer;
+}
+.actualday{
+	color: RGB(17,150,136);
+}
+.selectedday{
+	background-color: RGB(17,150,136);
+	color: white;
+}
+
+
+
+
+.task-container{
+	height: 600px;
+	margin-bottom: 200px;
+}
+
+.overflow-visible{
+	overflow: visible;
+}
+
+
+.task-date{
+	font-size: 15px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	border-bottom: 1px solid grey;
+}
+
+.task-hours{
+	font-size: 14px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+
+}
+
+
+.task-container-position-absolute{
+	font-size: 12px;
+	position: absolute;
+	top: 30px;
+	left: 50px;
+	right: 0px;
+	z-index: 1;
+}
+
+.slidebar{
+	border: 1px solid RGB(17,150,136);
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.slidebar:hover{
+	cursor: pointer;
+}
+
+
